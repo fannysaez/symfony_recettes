@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur la page d'accueil !{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenue sur notre site !</h1>
+        <p class="lead">Découvrez nos produits de qualité.</p>
+        <hr class="my-4">
+        <p>Rejoignez-nous dès aujourd'hui pour profiter de nos offres exclusives.</p>
+        {% if app.user %}
+            <p>Vous êtes connecté en tant que <strong>{{ app.user.email }}</strong>.</p>
+            <a class="btn btn-primary btn-lg" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        {% else %}
+            <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Connexion</a>
+            <a class="btn btn-success btn-lg" href="{{ path('app_register') }}" role="button">Inscription</a>
+        {% endif %}
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Catégories</h5>
+                    <p class="card-text">Gérez les catégories de produits.</p>
+                    <a href="{{ path('admin_category') }}" class="btn btn-primary">Gérer les catégories</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Marques</h5>
+                    <p class="card-text">Gérez les marques disponibles.</p>
+                    <a href="{{ path('admin_brand') }}" class="btn btn-primary">Gérer les marques</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pantalons</h5>
+                    <p class="card-text">Gérez les pantalons en stock.</p>
+                    <a href="{{ path('admin_pants') }}" class="btn btn-primary">Gérer les pantalons</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

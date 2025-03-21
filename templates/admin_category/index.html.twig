@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Catégories{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Liste des Catégories de Pantalons</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom de la Catégorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.label }}</td>
+                    <td>
+                        <a href="{{ path('add_category', {'id': category.id}) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-eye mt-3"></i> 
+                        </a>
+                        <a href="{{ path('edit_category', {'id': category.id}) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="{{ path('remove_category', {'id': category.id}) }}" 
+                           class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucune catégorie trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+</div>
+{% endblock %}

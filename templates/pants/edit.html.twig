@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PantsController!{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Modifier une marque</h1>
+
+    <div class="card shadow-sm p-4">
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        {{ form_row(form.name, {'attr': {'class': 'form-group'}}) }}
+
+        <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+        <a href="{{ path('home_index') }}" class="btn btn-secondary mt-3">Annuler</a>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Brand{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1>Listes des marques</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom des Marques</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for brand in brands %}
+                <tr>
+                    <td>{{ brand.id }}</td>
+                    <td>{{ brand.label }}</td>
+                    <td>
+                        <a href="{{ path('add_brand', {'id': brand.id}) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-eye mt-3"></i> 
+                        </a>
+                        <a href="{{ path('edit_brand', {'id': brand.id}) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="{{ path('remove_brand', {'id': brand.id}) }}" 
+                           class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Voulez-vous vraiment supprimer cette marque ?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucune marque trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+</div>
+
+{% endblock %}

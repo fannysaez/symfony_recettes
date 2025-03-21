@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminPantsController!{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1>Listes des Pantalons</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom du Pantalon</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pant in pants %}
+                <tr>
+                    <td>{{ pant.id }}</td>
+                    <td>{{ pant.name }}</td>
+                    <td>{{ pant.description }}</td>
+                    <td>{{ pant.price }}</td>
+
+                    
+                    <td>
+                        <a href="{{ path('add_pants', {'id': pant.id}) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-eye mt-3"></i> 
+                        </a>
+                        <a href="{{ path('edit_pants', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="{{ path('remove_pants', {'id': pant.id}) }}" 
+                           class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Voulez-vous vraiment supprimer ce pantalon ?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun pantalon trouver.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+</div>
+
+
+
+{% endblock %}
