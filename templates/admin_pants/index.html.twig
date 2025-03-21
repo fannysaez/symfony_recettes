@@ -1,61 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion des Pantalons{% endblock %}
+{% block title %}Hello AdminPantsController!{% endblock %}
 
 {% block body %}
+
 <div class="container mt-4">
-    <h1>Liste des Pantalons</h1>
+    <h1>Listes des Pantalons</h1>
     <br>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
+                <th>ID</th>
                 <th>Nom du Pantalon</th>
+                <th>Description</th>
+                <th>Prix</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for pant in pants %}
             <tr>
-                <td>{{ pant.label }}</td>
+                <td>{{ pant.id }}</td>
+                <td>{{ pant.name }}</td>
+                <td>{{ pant.description }}</td>
+                <td>{{ pant.price }}</td>
+
+
                 <td>
-                    <a href="{{ path('add_pant', {'id': pant.id}) }}" class="btn btn-success btn-sm">
+                    <a href="{{ path('add_pants', {'id': pant.id}) }}" class="btn btn-success btn-sm">
                         <i class="bi bi-eye mt-3"></i>
                     </a>
-                    <a href="{{ path('edit_pant', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
+                    <a href="{{ path('edit_pants', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil"></i>
                     </a>
-
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{pant.id}}">
+                    <a href="{{ path('remove_pants', {'id': pant.id}) }}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Voulez-vous vraiment supprimer ce pantalon ?');">
                         <i class="bi bi-trash"></i>
-                    </button>
-
-                    <div class="modal fade" id="exampleModal{{pant.id}}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Êtes-vous sûr de vouloir supprimer ce pantalon ?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer
-                                    </button>
-                                    <a href="{{ path('remove_pant', {'id': pant.id}) }}" type="button"
-                                        class="btn btn-primary">Supprimer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="2" class="text-center">Aucun pantalon trouvé.</td>
+                <td colspan="3" class="text-center">Aucun pantalon trouver.</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -64,4 +50,7 @@
     <br>
     <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
 </div>
+
+
+
 {% endblock %}
