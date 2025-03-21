@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminPantsController!{% endblock %}
+{% block title %}Gestion des Pantalons!{% endblock %}
 
 {% block body %}
 
@@ -10,7 +10,7 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                <th>ID</th>
+                {# <th>ID</th> #}
                 <th>Nom du Pantalon</th>
                 <th>Description</th>
                 <th>Prix</th>
@@ -20,28 +20,48 @@
         <tbody>
             {% for pant in pants %}
             <tr>
-                <td>{{ pant.id }}</td>
+                {# <td>{{ pant.id }}</td> #}
                 <td>{{ pant.name }}</td>
                 <td>{{ pant.description }}</td>
-                <td>{{ pant.price }}</td>
-
-
+                <td>{{ pant.price }} €</td>
                 <td>
                     <a href="{{ path('add_pants', {'id': pant.id}) }}" class="btn btn-success btn-sm">
-                        <i class="bi bi-eye mt-3"></i>
+                        <i class="bi bi-eye"></i>
                     </a>
                     <a href="{{ path('edit_pants', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <a href="{{ path('remove_pants', {'id': pant.id}) }}" class="btn btn-danger btn-sm"
-                        onclick="return confirm('Voulez-vous vraiment supprimer ce pantalon ?');">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal{{ pant.id }}">
                         <i class="bi bi-trash"></i>
-                    </a>
+                    </button>
+
+                    <div class="modal fade" id="deleteModal{{ pant.id }}" tabindex="-1"
+                        aria-labelledby="modalLabel{{ pant.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel{{ pant.id }}">Confirmation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sûr de vouloir supprimer ce pantalon ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Fermer</button>
+                                    <a href="{{ path('remove_pants', {'id': pant.id}) }}"
+                                        class="btn btn-primary">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="3" class="text-center">Aucun pantalon trouver.</td>
+                <td colspan="5" class="text-center">Aucun pantalon trouvé.</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -50,7 +70,4 @@
     <br>
     <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
 </div>
-
-
-
 {% endblock %}
