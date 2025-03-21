@@ -6,11 +6,11 @@
 
 <div class="container mt-4">
     <h1>Listes des marques</h1>
-
+    <br>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                <th>ID</th>
+                {# <th>ID</th> #}
                 <th>Nom des Marques</th>
                 <th>Actions</th>
             </tr>
@@ -18,7 +18,7 @@
         <tbody>
             {% for brand in brands %}
                 <tr>
-                    <td>{{ brand.id }}</td>
+                    {# <td>{{ brand.id }}</td> #}
                     <td>{{ brand.label }}</td>
                     <td>
                         <a href="{{ path('add_brand', {'id': brand.id}) }}" class="btn btn-success btn-sm">
