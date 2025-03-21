@@ -1,43 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Brand{% endblock %}
+{% block title %}Gestion des Marques{% endblock %}
 
 {% block body %}
-
 <div class="container mt-4">
-    <h1>Listes des marques</h1>
-    <br>
+    <h1>Liste des Marques</h1>
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                {# <th>ID</th> #}
-                <th>Nom des Marques</th>
+                <th>Nom de la Marque</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for brand in brands %}
-                <tr>
-                    {# <td>{{ brand.id }}</td> #}
-                    <td>{{ brand.label }}</td>
-                    <td>
-                        <a href="{{ path('add_brand', {'id': brand.id}) }}" class="btn btn-success btn-sm">
-                            <i class="bi bi-eye mt-3"></i> 
-                        </a>
-                        <a href="{{ path('edit_brand', {'id': brand.id}) }}" class="btn btn-warning btn-sm">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a href="{{ path('remove_brand', {'id': brand.id}) }}" 
-                           class="btn btn-danger btn-sm" 
-                           onclick="return confirm('Voulez-vous vraiment supprimer cette marque ?');">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ brand.label }}</td>
+                <td>
+                    <a href="{{ path('add_brand', {'id': brand.id}) }}" class="btn btn-success btn-sm">
+                        <i class="bi bi-eye mt-3"></i>
+                    </a>
+                    <a href="{{ path('edit_brand', {'id': brand.id}) }}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{brand.id}}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+
+                    <div class="modal fade" id="exampleModal{{brand.id}}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sûr de vouloir supprimer cette marque ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer
+                                    </button>
+                                    <a href="{{ path('remove_brand', {'id': brand.id}) }}" type="button"
+                                        class="btn btn-primary">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
             {% else %}
-                <tr>
-                    <td colspan="3" class="text-center">Aucune marque trouvée.</td>
-                </tr>
+            <tr>
+                <td colspan="2" class="text-center">Aucune marque trouvée.</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -45,5 +64,4 @@
     <br>
     <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
 </div>
-
 {% endblock %}
