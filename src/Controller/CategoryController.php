@@ -94,27 +94,4 @@ final class CategoryController extends AbstractController
             'category' => $category,
         ]);
     }
-
-
-    // //En vérifiant dans la base de donnée de ma table category, mon label de la category à bien été supprimer  
-    // #[Route('/edit_category/{id}', name: 'edit_category')]
-    // public function editCategory(int $id, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
-    // {
-    //     // Vérifier si la catégorie existe
-    //     // $category = $entityManager->getRepository(Category::class)->find($id);
-    //     $category = $categoryRepository->find($id);
-    //     if (!$category) {
-    //         throw $this->createNotFoundException('La catégorie demandée n\'existe pas.');
-    //     }
-
-
-
-    //     // Editer l'entité
-    //     // $category->setLabel('toto');
-    //     // $entityManager->persist($category);
-    //     // $entityManager->flush();
-
-    //     // Rediriger vers la category
-    //     return $this->redirectToRoute('home_index');
-    // }
 }
