@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BrandController!{% endblock %}
+{% block title %}Gestion des marques{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <h1 class="mb-4">Ajouter une marque</h1>
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 500px;">
+        <h1 class="mb-4 text-center">Ajouter une marque</h1>
 
-    <div class="card shadow-sm p-4">
-        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+        <div class="mt-4">
+            {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
 
-        {{ form_row(form.label, {'attr': {'class': 'form-group'}}) }}
+            <!-- Champ "Nom de la marque" avec un espacement sous le champ -->
+            <div class="form-group mb-3">
+                {{ form_row(form.label, {'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
-        <a href="{{ path('home_index') }}" class="btn btn-secondary mt-3">Annuler</a>
+            <!-- Boutons alignés côte à côte et centrés -->
+            <div class="d-flex justify-content-center mt-3">
+                <button type="submit" class="btn btn-primary mx-2">Envoyer</button>
+                <a href="{{ path('home_index') }}" class="btn btn-secondary mx-2">Annuler</a>
+            </div>
 
-        {{ form_end(form) }}
+            {{ form_end(form) }}
+        </div>
     </div>
 </div>
 
