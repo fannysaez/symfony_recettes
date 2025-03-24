@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <style>
+        body { display: flex; font-family: Arial, sans-serif; }
+        nav { width: 250px; background: #333; color: white; padding: 20px; height: 100vh; }
+        nav a { color: white; display: block; padding: 10px 0; text-decoration: none; }
+        nav a:hover { background: #444; }
+        .content { flex: 1; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Admin</h2>
+        <a href="{{ path('admin_category') }}">Catégories</a>
+        <a href="{{ path('admin_brand') }}">Marques</a>
+        <!-- Ajoute d'autres liens ici -->
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

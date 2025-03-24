@@ -1,77 +1,113 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion des Catégories{% endblock %}
+{% block title %}Admin Dashboard{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
-    <h1>Liste des Catégories de Pantalons</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Menu latéral -->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="border-right: 1px solid #ccc;">
+                <div class="position-sticky">
+                    <h4 class="ms-3 mt-3">Admin</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('admin_category') }}">
+                                Catégories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_brand') }}">
+                                Marques
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_pants') }}">
+                                Pantalons
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                {# <th>ID</th> #}
-                <th>Nom de la Catégorie</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-            <tr>
-                <td>{{ category.label }}</td>
-                <td>
-                    <a href="{{ path('add_category', {'id': category.id}) }}" class="btn btn-success btn-sm">
-                        <i class="bi bi-eye mt-3"></i>
+            <!-- Contenu de la page -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
+                <h1>Liste des Catégories</h1>
+
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nom de la Catégorie</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                        <tr>
+                            <td>{{ category.label }}</td>
+                            <td>
+                                <!-- Voir la catégorie -->
+                                <a href="{{ path('add_category', {'id': category.id}) }}"
+                                    class="btn btn-success btn-sm">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                <!-- Modifier la catégorie -->
+                                <a href="{{ path('edit_category', {'id': category.id}) }}"
+                                    class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <!-- Supprimer la catégorie -->
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{category.id}}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+
+                                <!-- Modal Bootstrap pour confirmation de suppression -->
+                                <div class="modal fade" id="exampleModal{{category.id}}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Fermer
+                                                </button>
+                                                <a href="{{ path('remove_category', {'id': category.id}) }}"
+                                                    class="btn btn-primary">
+                                                    Confirmer
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="2" class="text-center">Aucune catégorie trouvée.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- Bouton de retour centré -->
+                <div class="text-center mt-4">
+                    <a href="{{ path('home_index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Retour
                     </a>
-                    <a href="{{ path('edit_category', {'id': category.id}) }}" class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{category.id}}">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                    {# Modal boostrap #}
-                    <div class="modal fade" id="exampleModal{{category.id}}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Message de confirmation -->
-                                    <p>Êtes-vous sûr de vouloir effectuer cette action ?</p>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer
-                                    </button>
-                                    <a href="{{ path('remove_category', {'id': category.id}) }}" type="button"
-                                        class="btn btn-primary">Enregistrer les modifications
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="3" class="text-center">Aucune catégorie trouvée.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <br>
-    <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+                </div>
+            </main>
+        </div>
+    </div>
 </div>
-
-
-
 
 {% endblock %}

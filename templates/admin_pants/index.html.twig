@@ -1,73 +1,112 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion des Pantalons!{% endblock %}
+{% block title %}Gestion des Pantalons{% endblock %}
 
 {% block body %}
-
 <div class="container mt-4">
-    <h1>Listes des Pantalons</h1>
-    <br>
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                {# <th>ID</th> #}
-                <th>Nom du Pantalon</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pant in pants %}
-            <tr>
-                {# <td>{{ pant.id }}</td> #}
-                <td>{{ pant.name }}</td>
-                <td>{{ pant.description }}</td>
-                <td>{{ pant.price }} €</td>
-                <td>
-                    <a href="{{ path('add_pants', {'id': pant.id}) }}" class="btn btn-success btn-sm">
-                        <i class="bi bi-eye"></i>
-                    </a>
-                    <a href="{{ path('edit_pants', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal{{ pant.id }}">
-                        <i class="bi bi-trash"></i>
-                    </button>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Menu latéral -->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="border-right: 1px solid #ccc;">
+                <div class="position-sticky">
+                    <h4 class="ms-3 mt-3">Admin</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_category') }}">
+                                Catégories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_brand') }}">
+                                Marques
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('admin_pants') }}">
+                                Pantalons
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-                    <div class="modal fade" id="deleteModal{{ pant.id }}" tabindex="-1"
-                        aria-labelledby="modalLabel{{ pant.id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel{{ pant.id }}">Confirmation</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Êtes-vous sûr de vouloir supprimer ce pantalon ?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Fermer</button>
-                                    <a href="{{ path('remove_pants', {'id': pant.id}) }}"
-                                        class="btn btn-primary">Supprimer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5" class="text-center">Aucun pantalon trouvé.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            <!-- Contenu de la page -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
+                <h1>Liste des Pantalons</h1>
 
-    <br>
-    <a href="{{ path('home_index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nom du Pantalon</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pant in pants %}
+                        <tr>
+                            <td>{{ pant.name }}</td>
+                            <td>{{ pant.description }}</td>
+                            <td>{{ pant.price }} €</td>
+                            <td>
+                                <!-- Voir le pantalon -->
+                                <a href="{{ path('add_pants', {'id': pant.id}) }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                <!-- Modifier le pantalon -->
+                                <a href="{{ path('edit_pants', {'id': pant.id}) }}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <!-- Supprimer le pantalon -->
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ pant.id }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+
+                                <!-- Modal Bootstrap pour confirmation de suppression -->
+                                <div class="modal fade" id="deleteModal{{ pant.id }}" tabindex="-1"
+                                    aria-labelledby="modalLabel{{ pant.id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel{{ pant.id }}">Confirmation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Êtes-vous sûr de vouloir supprimer ce pantalon ?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Fermer</button>
+                                                <a href="{{ path('remove_pants', {'id': pant.id}) }}"
+                                                    class="btn btn-primary">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">Aucun pantalon trouvé.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- Bouton de retour centré -->
+                <div class="text-center mt-4">
+                    <a href="{{ path('home_index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Retour
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
