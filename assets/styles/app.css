@@ -1,19 +1,18 @@
+/* Styles CSS perso */
 body{
     color: rgb(3, 3, 3);
     display: flex; 
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
-
+/* tableau */
 th{
     text-align: center;
 }
-
 /* Centrer le contenu de la colonne "Actions" */
 td:last-child {
     text-align: center; 
     white-space: nowrap; 
 }
-
 /* Aligner et espacer les boutons */
 td:last-child a,
 td:last-child button {
@@ -22,7 +21,7 @@ td:last-child button {
     justify-content: center; 
     margin: 0 10px; 
 }
-
+/* bouton "retour" admin */
 .center-btn {
     display: flex;
     justify-content: center;
