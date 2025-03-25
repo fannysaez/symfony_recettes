@@ -199,7 +199,7 @@
 
                 <br>
 
-                {% set exoSomme = [5, 5, 10, 10] %}
+                {# {% set exoSomme = [5, 5, 10, 10] %}
                 {% set somme = 0 %}
 
                 {% for valeur in exoSomme %}
@@ -207,7 +207,7 @@
                 {% endfor %}
                 <dt>30</dt>
                 <dd>{{ exoSomme|join(', ') }}</dd>
-                <dt>{{ somme }}</dt>
+                <dt>{{ somme }}</dt> #}
 
 
                 <br>
@@ -215,12 +215,26 @@
                 {# // Filtre à créer soi même ! #}
                 {% set exoSenpai = 'notice me senpai' %}
                 <dt>!!!NOTICE ME SENPAI!!!</dt>
-                <dd>{{ exoSenpai }}</dd>
+                <dd>{{ exoSenpai }}</dd><br>
+                <dd>{{ exoSenpai|notice}}</dd>
 
 
                 <br>
 
-                
+                {% set exoArgent = 99.99 %}
+                <dt>99,99 €</dt>
+                <dd>{{ exoArgent }}</dd><br>
+                <dd>{{ exoArgent|prix }}</dd>
+
+                <br>
+
+                {# // Filtre à créer soi même ! #}
+                {% set exolorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid
+                assumenda consectetur ducimus esse harum illo, itaque, iusto laudantium neque nobis obcaecati officiis
+                quae reiciendis reprehenderit, similique sit suscipit unde.' %}
+                <dt>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium...</dt>
+                <dd>{{ exolorem }}</dd><br>
+                <dd>{{ exolorem|cut_text }}</dd>
 
 
     </dl>
