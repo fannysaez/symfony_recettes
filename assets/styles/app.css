@@ -28,5 +28,9 @@ td:last-child button {
     margin-top: 20px; /* Ajuste la marge si nécessaire */
 }
 
+dl {
+    margin-top: 60px; /* Ajuste la valeur selon l'espacement souhaité */
+}
+
 
 
