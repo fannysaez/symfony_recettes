@@ -177,9 +177,11 @@
 
         <br>
         Explication :<br>
-        sort((a, b) => a.age <=> b.age) : Cette fonction trie les objets du tableau par l'attribut age. L'opérateur <=><br>
-        (spaceship operator) est utilisé pour comparer les valeurs d'âge.<br>
-        join(', ') : Cela transforme les éléments filtrés en une chaîne de caractères séparée par des virgules.<br>
+        sort((a, b) => a.age <=> b.age) : Cette fonction trie les objets du tableau par l'attribut age. L'opérateur <=>
+                <br>
+                (spaceship operator) est utilisé pour comparer les valeurs d'âge.<br>
+                join(', ') : Cela transforme les éléments filtrés en une chaîne de caractères séparée par des
+                virgules.<br>
                 <dd>
                     <ul>
                         {% for person in exoTriHard|sort((a, b) => a.age <=> b.age) %}
@@ -194,14 +196,31 @@
                 <dt>2, 4, 6, 8, 10, 12, 14, 16, 18</dt>
                 <dd>{{ exoHard|join(', ') }}</dd>
                 <dd>{{ exoHard|map(v => v * 2)|join(', ') }}</dd>
-        
+
                 <br>
 
                 {% set exoSomme = [5, 5, 10, 10] %}
+                {% set somme = 0 %}
+
+                {% for valeur in exoSomme %}
+                {% set somme = somme + valeur %}
+                {% endfor %}
                 <dt>30</dt>
                 <dd>{{ exoSomme|join(', ') }}</dd>
+                <dt>{{ somme }}</dt>
 
 
+                <br>
+
+                {# // Filtre à créer soi même ! #}
+                {% set exoSenpai = 'notice me senpai' %}
+                <dt>!!!NOTICE ME SENPAI!!!</dt>
+                <dd>{{ exoSenpai }}</dd>
+
+
+                <br>
+
+                
 
 
     </dl>
