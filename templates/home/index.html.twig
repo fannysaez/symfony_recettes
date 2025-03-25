@@ -3,6 +3,47 @@
 {% block title %}Bienvenue sur la page d'accueil !{% endblock %}
 
 {% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
 <div class="container mt-5">
     <div class="jumbotron text-center">
         <h1 class="display-4">Bienvenue sur notre site !</h1>
@@ -10,42 +51,43 @@
         <hr class="my-4">
         <p>Rejoignez-nous dès aujourd'hui pour profiter de nos offres exclusives.</p>
         {% if app.user %}
-            <p>Vous êtes connecté en tant que <strong>{{ app.user.email }}</strong>.</p>
-            <a class="btn btn-primary btn-lg" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
+        <p>Vous êtes connecté en tant que <strong>{{ app.user.email }}</strong>.</p>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
         {% else %}
-            <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Connexion</a>
-            <a class="btn btn-success btn-lg" href="{{ path('app_register') }}" role="button">Inscription</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Connexion</a>
+        <a class="btn btn-success btn-lg" href="{{ path('app_register') }}" role="button">Inscription</a>
         {% endif %}
     </div>
+</div>
 
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Catégories</h5>
-                    <p class="card-text">Gérez les catégories de produits.</p>
-                    <a href="{{ path('admin_category') }}" class="btn btn-primary">Gérer les catégories</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Marques</h5>
-                    <p class="card-text">Gérez les marques disponibles.</p>
-                    <a href="{{ path('admin_brand') }}" class="btn btn-primary">Gérer les marques</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Pantalons</h5>
-                    <p class="card-text">Gérez les pantalons en stock.</p>
-                    <a href="{{ path('admin_pants') }}" class="btn btn-primary">Gérer les pantalons</a>
-                </div>
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Catégories</h5>
+                <p class="card-text">Gérez les catégories de produits.</p>
+                <a href="{{ path('admin_category') }}" class="btn btn-primary">Gérer les catégories</a>
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Marques</h5>
+                <p class="card-text">Gérez les marques disponibles.</p>
+                <a href="{{ path('admin_brand') }}" class="btn btn-primary">Gérer les marques</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Pantalons</h5>
+                <p class="card-text">Gérez les pantalons en stock.</p>
+                <a href="{{ path('admin_pants') }}" class="btn btn-primary">Gérer les pantalons</a>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}
