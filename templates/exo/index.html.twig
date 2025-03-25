@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Exercices "Filtres" !{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center mt-4">Exercices | Filtres avec Twig</h1>
+
+    <dl class="mt-6">
+        {# Rien à faire #}
+        {# Juste pour vous montrer que "join" permet de transformer #}
+        {# un tableau en string en concaténant ses éléments #}
+        Exemple en démo :
+        {% set demoJoin = ['je', 'suis', 'un', 'tableau'] %}
+        <dt>je, suis, un, tableau</dt>
+        <dd>{{ demoJoin|join(', ') }}</dd>
+
+        <br>
+
+        Affichera : Convertit une valeur en majuscules<br>
+        {% set exoNomFamille = "Durand" %}
+        <dt>DURAND</dt>
+        <dd>{{ exoNomFamille }}</dd>
+        <dd>{{ exoNomFamille|upper }}</dd>
+
+        <br>
+
+
+        Affichera : Le premier caractère sera majuscules, toutes les autres minuscules<br>
+        {% set exoPrenom = "charlotte" %}
+        <dt>Charlotte</dt>
+        <dd>{{ exoPrenom }}</dd>
+        <dd>{{ exoPrenom|capitalize }}</dd>
+
+        <br>
+
+        Affichera : Convertit la valeur en minuscule<br>
+        {% set exoChut = "MOINS FORT !!" %}
+        <dt>moins fort !!</dt>
+        <dd>{{ exoChut }}</dd>
+        <dd>{{ exoChut|lower }}</dd>
+
+        <br>
+        Le `slice` Un filtre extrait une tranche d'une séquence, d'un cartographie ou d'une chaîne<br>
+        {% set exoInitial = "Diana" %}
+        <dt>Lady D.</dt>
+        <dd>Lady {{ exoInitial }}.</dd>
+        <dd>Lady {{ exoInitial|slice(0.1) }}.</dd>
+
+        <br>
+
+        Le `round` filtre coupe un nombre à une précision donnée<br>
+        {% set exoToutrond = 99.95 %}
+        <dt>100</dt>
+        <dd>{{ exoToutrond|join(', ') }}</dd>
+        <dd>{{ exoToutrond|round }}</dd>
+
+        <br>
+
+        Afficher la date du jour au format m/d/Y<br>
+        {% set exomaintenant = 'now' %}
+        <dt>25/03/2024 (la date du jour)</dt>
+        <dd>{{ exomaintenant }}</dd>
+        <dd>{{ exomaintenant|date("d/m/Y")}}</dd>
+
+        <br>
+
+        Affichera le titre HTML sans l'échapper<br>
+        {% set exoHtml = "<h3>Je suis un vrai titre !</h3>" %}
+        <dt>
+            <h3>Je suis un vrai titre !</h3>
+        </dt>
+        <dd>{{ exoHtml }}</dd>
+        <dd>{{ exoHtml|raw }}</dd>
+
+
+        <br>
+
+        Le `split` filtre divise une chaîne par le délimiteur donné et retourne une liste de cordes<br>
+        {% set mots = 'feu eau terre vent' %}
+        <dt>
+            <ul>
+                <li>feu</li>
+                <li>eau</li>
+                <li>terre</li>
+                <li>vent</li>
+            </ul>
+
+        </dt>
+        <dd>
+            <ul>
+                {% for mot in mots|split(' ') %}
+                <li>{{ mot}}</li>
+                {% endfor %}
+            </ul>
+        </dd>
+
+        <br>
+
+        Le `sort` filtre trie les séquences et cartographies<br>
+        {% set exoTri = [33, 5, 9, 4, 5, 3, 2] %}
+        <dt>2, 3, 4, 5, 5, 9, 33</dt>
+        <dd>{{ exoTri|sort|join(', ') }}</dd>
+
+        <br>
+
+        Explication :<br>
+        exoRebours|sort trie le tableau en ordre croissant.<br>
+        reverse inverse l'ordre du tableau pour le mettre en ordre décroissant.<br>
+        join(', ') transforme le tableau inversé en une chaîne de caractères séparée par des virgules.<br>
+        Affichera 5, 4, 3, 2, 1<br><br>
+        {% set exoRebours = [1, 2, 3, 4, 5] %}
+        <dt>5, 4, 3, 2, 1</dt>
+        <dd>{{ exoRebours|sort|reverse|join(', ') }}</dd>
+
+
+        <br>
+
+        Explication :<br>
+        filter(v => v == 'CHARLIE') : Cette fonction filtre les éléments du tableau pour ne garder que ceux qui sont<br>
+        exactement égaux à 'CHARLIE'.<br>
+        join(', ') : Transforme les éléments filtrés en une chaîne séparée par des virgules.<br><br>
+        {% set exoCharlie = ['Pas charlie', 'Toujours pas charlie', 'peut être charlie', 'CHARLIE', 'nan !', 'essaye
+        encore !'] %}
+        <dt>CHARLIE</dt>
+        <dd>{{ exoCharlie|join(', ') }}</dd>
+        <dd>{{ exoCharlie|filter(v => v == 'CHARLIE')|join(', ') }}</dd>
+
+
+        <br>
+
+        {% set exocoucou = ['hello', 'guten tag', 'privyet', 'plop', 'coucou', 'bonjour', 'hi'] %}
+        <dt>plop, coucou</dt>
+        <dd>{{ exocoucou|join(', ') }}</dd>
+        <dd>{{ exocoucou|filter(v => v == 'plop' or v == 'coucou')|join(', ') }}</dd>
+
+
+
+        <br>
+
+        {% set exoplop = [1, -5, 58, -11, -869, 999, 2] %}
+        <dt>1, 58, 999, 2</dt>
+        <dd>{{ exoplop|join(', ') }}</dd>
+        <dd>{{ exoplop|filter(v => v > 0)|join(', ') }}</dd>
+
+
+    </dl>
+</div>
+
+
+
+{% endblock %}
