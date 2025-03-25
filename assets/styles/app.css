@@ -1,5 +1,7 @@
 /* Styles CSS perso */
 body{
+    display: flex;
+    flex-direction: column;
     color: rgb(3, 3, 3);
     display: flex; 
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
