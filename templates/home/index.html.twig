@@ -26,13 +26,17 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Catégories
                     </a>
+
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{path('add_category')}}">Ajouter une catégorie</a></li>
-                        {# <li><a class="dropdown-item" href="#">Another action</a></li>
+                        {% for categorie in getCategory() %}
+                        <li><a class="dropdown-item" href="{{path('')}}">{{categorie.label}}</a></li>
+                        
+                        {% endfor %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li> #}
+                        {# <li><a class="dropdown-item" href="#">Something else here</a></li> #}
                     </ul>
                 </li>
             </ul>
