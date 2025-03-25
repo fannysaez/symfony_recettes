@@ -145,6 +145,65 @@
         <dd>{{ exoplop|filter(v => v > 0)|join(', ') }}</dd>
 
 
+
+        <br>
+
+        {% set exoTriHard = [
+        {
+        name: 'Dorothée',
+        age: 50,
+        },
+        {
+        name: 'Bianca',
+        age: 19,
+        },
+        {
+        name: 'Charlène',
+        age: 29,
+        },
+        {
+        name: 'Arthur',
+        age: 15,
+        }
+        ] %}
+        <dt>
+            <ul>
+                <li>Arthur</li>
+                <li>Bianca</li>
+                <li>Charlène</li>
+                <li>Dorothée</li>
+            </ul>
+        </dt>
+
+        <br>
+        Explication :<br>
+        sort((a, b) => a.age <=> b.age) : Cette fonction trie les objets du tableau par l'attribut age. L'opérateur <=><br>
+        (spaceship operator) est utilisé pour comparer les valeurs d'âge.<br>
+        join(', ') : Cela transforme les éléments filtrés en une chaîne de caractères séparée par des virgules.<br>
+                <dd>
+                    <ul>
+                        {% for person in exoTriHard|sort((a, b) => a.age <=> b.age) %}
+                            <li>{{ person.name }}</li>
+                            {% endfor %}
+                    </ul>
+                </dd>
+
+
+                <br>
+                {% set exoHard = [1, 2, 3, 4, 5, 6, 7, 8, 9] %}
+                <dt>2, 4, 6, 8, 10, 12, 14, 16, 18</dt>
+                <dd>{{ exoHard|join(', ') }}</dd>
+                <dd>{{ exoHard|map(v => v * 2)|join(', ') }}</dd>
+        
+                <br>
+
+                {% set exoSomme = [5, 5, 10, 10] %}
+                <dt>30</dt>
+                <dd>{{ exoSomme|join(', ') }}</dd>
+
+
+
+
     </dl>
 </div>
 
