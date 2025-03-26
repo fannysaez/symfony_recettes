@@ -14,12 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:stats', description: 'Affiche les statistiques du site.')]
 class StatsCommand extends Command
 {
-    private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(
+        private EntityManagerInterface $entityManager)
     {
         parent::__construct();
-        $this->entityManager = $entityManager;
+       
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -30,18 +30,17 @@ class StatsCommand extends Command
         $categoryRepository = $this->entityManager->getRepository(Category::class);  // Utilise Category pour les catégories
 
         // Nombre d'utilisateurs
-        $userCount = $userRepository->count([]);
+        $userCount = $userRepository->count();
         $output->writeln("<info>Nombre d'utilisateurs :</info> $userCount");
 
         // Nombre de pantalons
-        $pantsCount = $pantsRepository->count([]);
+        $pantsCount = $pantsRepository->count();
         $output->writeln("<info>Nombre de pantalons :</info> $pantsCount");
 
         // Liste des catégories
         $categories = $categoryRepository->findAll();
         $output->writeln("<info>Catégories de produits :</info>");
         foreach ($categories as $category) {
-            // Si tu utilises getLabel(), sinon remplace avec getName()
             $output->writeln(" - " . $category->getLabel());  
         }
 
