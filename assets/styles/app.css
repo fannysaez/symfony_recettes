@@ -1,38 +1,90 @@
-/* Styles CSS perso */
-body{
+/* Styles généraux */
+body {
+    color: rgb(3, 3, 3);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
-    color: rgb(3, 3, 3);
-    display: flex; 
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    min-height: 100vh;
+    background-color: #f8f9fa;
 }
-/* tableau */
-th{
+
+/* Correction de la navbar */
+.navbar {
+    width: 100%;
+    background-color: #ffffff !important;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar a {
+    color: #333 !important;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-nav .nav-item .nav-link {
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background: #e9ecef;
+}
+
+/* Conteneur principal */
+.container-fluid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Centrage du contenu */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Contenu principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Style des tableaux */
+th {
     text-align: center;
 }
-/* Centrer le contenu de la colonne "Actions" */
+
 td:last-child {
-    text-align: center; 
-    white-space: nowrap; 
+    text-align: center;
+    white-space: nowrap;
 }
-/* Aligner et espacer les boutons */
+
 td:last-child a,
 td:last-child button {
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin: 0 10px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
 }
-/* bouton "retour" admin */
+
+/* Bouton "retour" admin */
 .center-btn {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Ajuste la marge si nécessaire */
+    margin-top: 20px;
 }
 
 dl {
-    margin-top: 60px; /* Ajuste la valeur selon l'espacement souhaité */
+    margin-top: 60px;
 }
-
-
-
