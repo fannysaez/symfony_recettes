@@ -5,7 +5,7 @@
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Vêtements</a>
+        <a class="navbar-brand" href="{{ path('home_index') }}"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,47 +13,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{path('home_index')}}">Accueil</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('home_index') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('add_brand')}}">Marques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('add_pants')}}">Pantalons</a>
+                    <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Catégories
                     </a>
-
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{path('add_category')}}">Ajouter une catégorie</a></li>
+                        <li><a class="dropdown-item" href="{{ path('add_category') }}">Ajouter une catégorie</a></li>
                         {% for categorie in getCategory() %}
-                        <li><a class="dropdown-item" href="{{path('')}}">{{categorie.label}}</a></li>
-                        
+                        <li><a class="dropdown-item" href="{{ path('show_index') }}">{{ categorie.label }}</a></li>
                         {% endfor %}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        {# <li><a class="dropdown-item" href="#">Something else here</a></li> #}
+                        <li><hr class="dropdown-divider"></li>
                     </ul>
                 </li>
             </ul>
             <form class="d-flex">
-                <input class="form-control me-2" type="recherche" placeholder="Recherche" aria-label="recherche">
-                <button class="btn btn-outline-success" type="submit">Recherche</button>
+                <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
             </form>
         </div>
     </div>
 </nav>
 
-<div class="container mt-5">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="jumbotron text-center">
         <h1 class="display-4">Bienvenue sur notre site !</h1>
         <p class="lead">Découvrez nos produits de qualité.</p>
         <hr class="my-4">
-        <p>Rejoignez-nous dès aujourd'hui pour profiter de nos offres exclusives.</p>
         {% if app.user %}
         <p>Vous êtes connecté en tant que <strong>{{ app.user.email }}</strong>.</p>
         <a class="btn btn-primary btn-lg" href="{{ path('app_logout') }}" role="button">Déconnexion</a>
@@ -62,36 +53,5 @@
         <a class="btn btn-success btn-lg" href="{{ path('app_register') }}" role="button">Inscription</a>
         {% endif %}
     </div>
-</div>
-
-<div class="row mt-5">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Catégories</h5>
-                <p class="card-text">Gérez les catégories de produits.</p>
-                <a href="{{ path('admin_category') }}" class="btn btn-primary">Gérer les catégories</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Marques</h5>
-                <p class="card-text">Gérez les marques disponibles.</p>
-                <a href="{{ path('admin_brand') }}" class="btn btn-primary">Gérer les marques</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Pantalons</h5>
-                <p class="card-text">Gérez les pantalons en stock.</p>
-                <a href="{{ path('admin_pants') }}" class="btn btn-primary">Gérer les pantalons</a>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 {% endblock %}
