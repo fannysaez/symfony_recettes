@@ -1,0 +1,22 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} Espace Administrateur {% endblock %}
+
+{% block body %}
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="row justify-content-center">
+        <!-- Contenu principal -->
+        <main
+            class="col-md-9 col-lg-8 px-md-4 d-flex flex-column justify-content-center align-items-center text-center">
+            <h1 class="mt-4">Bienvenue dans l’espace administrateur</h1>
+            <p>Gérez vos marques, vos pantalons ainsi que vos catégories ici.</p>
+
+            <!-- Bouton de retour à l'accueil -->
+            <a href="{{ path('home_index') }}" class="btn btn-primary mt-3">
+                <i class="bi bi-arrow-left"></i> Retour à l’accueil
+            </a>
+
+        </main>
+    </div>
+</div>
+{% endblock %}
