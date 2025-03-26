@@ -5,32 +5,6 @@
 {% block body %}
 <div class="container mt-4">
     <div class="container-fluid">
-        <div class="row">
-            <!-- Menu latéral -->
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="border-right: 1px solid #ccc; height: 100vh; overflow: auto">
-                <div class="position-sticky">
-                    <h4 class="ms-3 mt-3">Admin</h4>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ path('admin_category') }}">
-                                Catégories
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_brand') }}">
-                                Marques
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_pants') }}">
-                                Pantalons
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </nav>
-
             <!-- Contenu de la page -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
                 <h1>Liste des Catégories</h1>
@@ -88,7 +62,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -102,7 +75,7 @@
 
                 <!-- Bouton de retour centré -->
                 <div class="text-center mt-4">
-                    <a href="{{ path('home_index') }}" class="btn btn-secondary">
+                    <a href="{{ path('admin_index') }}" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Retour
                     </a>
                 </div>
